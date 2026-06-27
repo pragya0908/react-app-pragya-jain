@@ -1,20 +1,14 @@
 import { Position } from "reactflow";
 import BaseNode from "../components/BaseNode";
 
-export const LLMNode = ({ id }) => {
+export const ApiNode = ({ id }) => {
   return (
     <BaseNode
-      title="LLM"
+      title="API"
       inputs={[
         {
-          id: `${id}-system`,
+          id: `${id}-request`,
           position: Position.Left,
-          style: { top: "33%" },
-        },
-        {
-          id: `${id}-prompt`,
-          position: Position.Left,
-          style: { top: "66%" },
         },
       ]}
       outputs={[
@@ -24,8 +18,15 @@ export const LLMNode = ({ id }) => {
         },
       ]}
     >
-      <p>Large Language Model</p>
-      <small>Processes prompts and generates responses.</small>
+      <div
+  style={{
+    color: "#475569",
+    fontSize: 14,
+    lineHeight: 1.5,
+  }}
+>
+  REST API Call
+</div>
     </BaseNode>
   );
 };

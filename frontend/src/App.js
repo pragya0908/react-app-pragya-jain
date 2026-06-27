@@ -1,12 +1,23 @@
-import { PipelineToolbar } from './toolbar';
-import { PipelineUI } from './ui';
-import { SubmitButton } from './submit';
+// App.js
+
+
+import { PipelineToolbar } from "./toolbar";
+import { PipelineUI } from "./ui";
+import { SubmitButton } from "./submit";
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        background: "#eff6ff",
+        minHeight: "100vh",
+        padding: "25px",
+      }}
+    >
       <PipelineToolbar />
+
       <PipelineUI />
+
       <SubmitButton />
     </div>
   );

@@ -1,47 +1,62 @@
-// inputNode.js
-
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { useState } from "react";
+import { Position } from "reactflow";
+import BaseNode from "../components/BaseNode";
 
 export const InputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
-  const [inputType, setInputType] = useState(data.inputType || 'Text');
+  const [currName, setCurrName] = useState(
+    data?.inputName || id.replace("customInput-", "input_")
+  );
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setInputType(e.target.value);
-  };
+  const [inputType, setInputType] = useState(
+    data?.inputType || "Text"
+  );
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Input</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={inputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">File</option>
-          </select>
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-value`}
-      />
-    </div>
+    <BaseNode
+      title="Input"
+      outputs={[
+        {
+          id: `${id}-value`,
+          position: Position.Right,
+        },
+      ]}
+    >
+      <label>
+        style={{
+fontSize:13,
+fontWeight:600,
+color:"#334155"
+}}
+Name
+        <input
+          value={currName}
+          onChange={(e) => setCurrName(e.target.value)}
+          style={{
+    width:"100%",
+    padding:"8px",
+    borderRadius:"8px",
+    border:"1px solid #cbd5e1",
+    outline:"none"
+}}
+        />
+      </label>
+
+      <label>
+        Type
+        <select
+          value={inputType}
+          onChange={(e) => setInputType(e.target.value)}
+          style={{
+    width:"100%",
+    padding:"8px",
+    borderRadius:"8px",
+    border:"1px solid #cbd5e1"
+}}
+        >
+          <option>Text</option>
+          <option>File</option>
+        </select>
+      </label>
+    </BaseNode>
   );
-}
+};
